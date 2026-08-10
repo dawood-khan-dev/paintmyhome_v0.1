@@ -8,7 +8,7 @@ interface LegalLayoutProps {
 const LegalLayout = ({ children }: LegalLayoutProps) => (
   <>
     {children}
-    <Toolbar />
+    {process.env.BASEHUB_TOKEN && <Toolbar />}
   </>
 );
 
