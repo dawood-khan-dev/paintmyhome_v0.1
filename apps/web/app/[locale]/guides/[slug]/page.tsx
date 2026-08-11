@@ -71,7 +71,7 @@ const BlogPost = async ({ params }: BlogPostProperties) => {
                 description: page.description,
                 mainEntityOfPage: {
                   "@type": "WebPage",
-                  "@id": new URL(`/blog/${page._slug}`, url).toString(),
+                  "@id": new URL(`/guides/${page._slug}`, url).toString(),
                 },
                 headline: page._title,
                 image: page.image.url,
@@ -83,10 +83,10 @@ const BlogPost = async ({ params }: BlogPostProperties) => {
             <div className="container mx-auto py-16">
               <Link
                 className="mb-4 inline-flex items-center gap-1 text-muted-foreground text-sm focus:underline focus:outline-none"
-                href="/blog"
+                href="/guides"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
-                Back to Blog
+                Back to Guides
               </Link>
               <div className="mt-16 flex flex-col items-start gap-8 sm:flex-row">
                 <div className="sm:flex-1">

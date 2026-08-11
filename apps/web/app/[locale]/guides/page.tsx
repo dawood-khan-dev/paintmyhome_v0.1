@@ -58,7 +58,7 @@ const BlogIndex = async ({ params }: BlogProps) => {
                       "flex cursor-pointer flex-col gap-4 hover:opacity-75",
                       !index && "md:col-span-2"
                     )}
-                    href={`/blog/${post._slug}`}
+                    href={`/guides/${post._slug}`}
                     key={post._slug}
                   >
                     <Image

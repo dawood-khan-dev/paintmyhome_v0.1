@@ -1,5 +1,23 @@
 @import "@repo/design-system/styles/globals.css";
 
+:root {
+  --primary: oklch(0.546 0.215 262.9);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.278 0.03 256.8);
+  --secondary-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.705 0.187 47.6);
+  --accent-foreground: oklch(0.145 0 0);
+}
+
+.dark {
+  --primary: oklch(0.546 0.215 262.9);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.985 0 0);
+  --secondary-foreground: oklch(0.278 0.03 256.8);
+  --accent: oklch(0.705 0.187 47.6);
+  --accent-foreground: oklch(0.145 0 0);
+}
+
 .shiki {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
