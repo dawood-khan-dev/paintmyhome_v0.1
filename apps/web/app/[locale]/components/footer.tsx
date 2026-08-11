@@ -17,8 +17,8 @@ export const Footer = async () => {
       description: "Managing a small business today is already tough.",
       items: [
         {
-          title: "Blog",
-          href: "/blog",
+          title: "Guides",
+          href: "/guides",
         },
       ],
     },

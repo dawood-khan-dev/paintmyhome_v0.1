@@ -6,16 +6,11 @@
     },
     "header": {
       "home": "Home",
-      "product": {
-        "title": "Product",
-        "description": "Managing a small business today is already tough.",
-        "pricing": "Pricing"
-      },
-      "blog": "Blog",
-      "docs": "Docs",
-      "contact": "Contact",
-      "signIn": "Sign in",
-      "signUp": "Get started"
+      "paintingCost": "Painting Cost",
+      "services": "Services",
+      "guides": "Guides",
+      "about": "About",
+      "getQuote": "Get a Quote"
     },
     "home": {
       "meta": {
