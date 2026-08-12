@@ -29,7 +29,7 @@ const RootLayout = async ({ children, params }: RootLayoutProperties) => {
     >
       <body>
         <AnalyticsProvider>
-          <DesignSystemProvider>
+          <DesignSystemProvider defaultTheme="light">
             <Header dictionary={dictionary} />
             {children}
             <Footer />
