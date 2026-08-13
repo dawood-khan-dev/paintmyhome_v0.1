@@ -35,7 +35,7 @@ export const Hero = async ({ dictionary }: HeroProps) => {
           </div>
           <div className="flex flex-row gap-3">
             <Button asChild className="gap-4" size="lg">
-              <Link href="/painting-cost">
+              <Link href="/painting-cost-calculator">
                 {dictionary.web.home.hero.cta}{" "}
                 <Calculator className="h-4 w-4" />
               </Link>

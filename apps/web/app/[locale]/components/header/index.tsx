@@ -19,7 +19,7 @@ export const Header = ({ dictionary }: HeaderProps) => {
     },
     {
       title: dictionary.web.header.paintingCost,
-      href: "/painting-cost",
+      href: "/painting-cost-calculator",
     },
     {
       title: dictionary.web.header.services,
