@@ -1,9 +1,9 @@
 import { blog } from "@repo/cms";
 import { Button } from "@repo/design-system/components/ui/button";
 import type { Dictionary } from "@repo/internationalization";
-import { MoveRight, PhoneCall } from "lucide-react";
+import { Calculator, MessageSquare, MoveRight } from "lucide-react";
 import Link from "next/link";
-import { env } from "@/env";
+import { QuoteModal } from "@/app/[locale]/components/quote-modal";
 
 interface HeroProps {
   dictionary: Dictionary;
@@ -35,16 +35,18 @@ export const Hero = async ({ dictionary }: HeroProps) => {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button asChild className="gap-4" size="lg" variant="outline">
-              <Link href="/contact">
-                Get in touch <PhoneCall className="h-4 w-4" />
-              </Link>
-            </Button>
             <Button asChild className="gap-4" size="lg">
-              <Link href={env.NEXT_PUBLIC_APP_URL}>
-                Sign up <MoveRight className="h-4 w-4" />
+              <Link href="/painting-cost-calculator">
+                {dictionary.web.home.hero.cta}{" "}
+                <Calculator className="h-4 w-4" />
               </Link>
             </Button>
+            <QuoteModal dictionary={dictionary}>
+              <Button className="gap-4" size="lg" variant="outline">
+                {dictionary.web.header.getQuote}{" "}
+                <MessageSquare className="h-4 w-4" />
+              </Button>
+            </QuoteModal>
           </div>
         </div>
       </div>
