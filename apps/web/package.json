@@ -34,7 +34,7 @@
     "lucide-react": "^0.577.0",
     "mdx-bundler": "^10.1.1",
     "next": "16.1.6",
-    "react": "19.2.4",
+    "react": "19.2.8",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.71.2",
     "require-in-the-middle": "8.0.1",
@@ -47,7 +47,7 @@
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "25.3.5",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.18",
     "@types/react-dom": "19.2.3",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
