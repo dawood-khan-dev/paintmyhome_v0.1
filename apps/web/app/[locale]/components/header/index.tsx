@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { QuoteModal } from "@/app/[locale]/components/quote-modal";
 
 interface HeaderProps {
   dictionary: Dictionary;
@@ -57,9 +58,11 @@ export const Header = ({ dictionary }: HeaderProps) => {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <Button asChild className="hidden md:inline">
-            <Link href="/contact">{dictionary.web.header.getQuote}</Link>
-          </Button>
+          <QuoteModal dictionary={dictionary}>
+            <Button className="hidden md:inline">
+              {dictionary.web.header.getQuote}
+            </Button>
+          </QuoteModal>
         </div>
         <div className="flex w-12 shrink items-end justify-end lg:hidden">
           <Button onClick={() => setOpen(!isOpen)} variant="ghost">
@@ -72,9 +75,9 @@ export const Header = ({ dictionary }: HeaderProps) => {
                   {item.title}
                 </Link>
               ))}
-              <Button asChild>
-                <Link href="/contact">{dictionary.web.header.getQuote}</Link>
-              </Button>
+              <QuoteModal dictionary={dictionary}>
+                <Button>{dictionary.web.header.getQuote}</Button>
+              </QuoteModal>
             </div>
           )}
         </div>

@@ -1,6 +1,7 @@
 import { keys as cms } from "@repo/cms/keys";
 import { keys as email } from "@repo/email/keys";
 import { keys as flags } from "@repo/feature-flags/keys";
+import { keys as googleSheets } from "@repo/google-sheets/keys";
 import { keys as core } from "@repo/next-config/keys";
 import { keys as observability } from "@repo/observability/keys";
 import { keys as rateLimit } from "@repo/rate-limit/keys";
@@ -18,6 +19,7 @@ export const env = createEnv({
     flags(),
     security(),
     rateLimit(),
+    googleSheets(),
   ],
   server: {},
   client: {},

@@ -3,6 +3,7 @@ import { Button } from "@repo/design-system/components/ui/button";
 import type { Dictionary } from "@repo/internationalization";
 import { Calculator, MessageSquare, MoveRight } from "lucide-react";
 import Link from "next/link";
+import { QuoteModal } from "@/app/[locale]/components/quote-modal";
 
 interface HeroProps {
   dictionary: Dictionary;
@@ -40,12 +41,12 @@ export const Hero = async ({ dictionary }: HeroProps) => {
                 <Calculator className="h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild className="gap-4" size="lg" variant="outline">
-              <Link href="/contact">
+            <QuoteModal dictionary={dictionary}>
+              <Button className="gap-4" size="lg" variant="outline">
                 {dictionary.web.header.getQuote}{" "}
                 <MessageSquare className="h-4 w-4" />
-              </Link>
-            </Button>
+              </Button>
+            </QuoteModal>
           </div>
         </div>
       </div>

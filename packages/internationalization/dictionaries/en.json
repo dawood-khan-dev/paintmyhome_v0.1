@@ -10,7 +10,20 @@
       "services": "Services",
       "guides": "Guides",
       "about": "About",
-      "getQuote": "Get a Quote"
+      "getQuote": "Get a Quote",
+      "getQuoteModal": {
+        "title": "Get a Quote",
+        "description": "Tell us a bit about your project and we'll get back to you shortly.",
+        "name": "Name",
+        "namePlaceholder": "Jane Doe",
+        "phone": "Phone",
+        "phonePlaceholder": "(555) 123-4567",
+        "city": "City",
+        "cityPlaceholder": "Los Angeles",
+        "cta": "Request a Quote",
+        "success": "Thanks! We'll be in touch soon.",
+        "error": "Something went wrong. Please try again."
+      }
     },
     "home": {
       "meta": {
