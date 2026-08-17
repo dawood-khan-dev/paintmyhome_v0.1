@@ -11,17 +11,27 @@ const quoteRequestSchema = z.object({
   name: z.string().trim().min(1),
   phone: z.string().trim().min(1),
   city: z.string().trim().min(1),
+  source: z.string().trim().min(1),
+  data: z.string().optional(),
 });
 
 export const submitQuote = async (
   name: string,
   phone: string,
-  city: string
+  city: string,
+  source: string,
+  data?: string
 ): Promise<{
   error?: string;
 }> => {
   try {
-    const parsed = quoteRequestSchema.safeParse({ name, phone, city });
+    const parsed = quoteRequestSchema.safeParse({
+      name,
+      phone,
+      city,
+      source,
+      data,
+    });
 
     if (!parsed.success) {
       throw new Error("Invalid quote request.");

@@ -41,7 +41,7 @@ export const Hero = async ({ dictionary }: HeroProps) => {
                 <Calculator className="h-4 w-4" />
               </Link>
             </Button>
-            <QuoteModal dictionary={dictionary}>
+            <QuoteModal dictionary={dictionary} source="Hero">
               <Button className="gap-4" size="lg" variant="outline">
                 {dictionary.web.header.getQuote}{" "}
                 <MessageSquare className="h-4 w-4" />

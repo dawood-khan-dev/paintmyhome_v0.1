@@ -13,7 +13,7 @@
       "getQuote": "Get a Quote",
       "getQuoteModal": {
         "title": "Get a Quote",
-        "description": "Tell us a bit about your project and we'll get back to you shortly.",
+        "description": "Tell us a bit about yourself and we'll get back to you shortly.",
         "name": "Name",
         "namePlaceholder": "Jane Doe",
         "phone": "Phone",
@@ -23,6 +23,101 @@
         "cta": "Request a Quote",
         "success": "Thanks! We'll be in touch soon.",
         "error": "Something went wrong. Please try again."
+      }
+    },
+    "paintingCostCalculator": {
+      "meta": {
+        "title": "Painting Cost Calculator",
+        "description": "Get an approximate cost range for painting your home in a few quick steps."
+      },
+      "screen1": {
+        "partOfHouse": {
+          "title": "Which part do you wish to paint?",
+          "interior": {
+            "label": "Interior",
+            "tooltip": "Painting only the walls accessible from the interior of the house using simple ladder/stool."
+          },
+          "exterior": {
+            "label": "Exterior",
+            "tooltip": "Painting exterior walls of the house using custom scaffolding arrangement as the situation demands."
+          },
+          "exteriorMessage": "Exterior painting costs varies significantly by the amount of scaffolding required, weather-grade paint and other factors. Request a quote to get exact cost.",
+          "getQuoteCta": "Get a Quote"
+        },
+        "houseSize": {
+          "title": "House Size",
+          "options": {
+            "1": "1 BHK",
+            "2": "2 BHK",
+            "3": "3 BHK",
+            "4+": "4 BHK+"
+          },
+          "explainerPrefix": "Typically, a",
+          "explainerMiddle": "has a carpet area of",
+          "explainerSuffix": "sq.ft. If yours doesn't fall in this range,",
+          "customAreaLink": "click here.",
+          "customAreaPlaceholder": "Enter Carpet Area (sq.ft.)",
+          "customAreaError": "Enter a whole number between 100 and 4000 sq.ft."
+        },
+        "paintingType": {
+          "title": "Type of Painting",
+          "fresh": {
+            "label": "Fresh Painting",
+            "subtext": "Painting your walls from scratch?",
+            "tooltip": "Putty – 2 coats; Primer – 1 coat; Paint – 2 coats"
+          },
+          "repainting": {
+            "label": "Re-painting",
+            "subtext": "Just looking to change the colors and finish of your walls?",
+            "tooltip": "Primer – 1 coat; Paint – 2 coats"
+          },
+          "rental": {
+            "label": "Rental Painting",
+            "subtext": "Is your tenant vacating?",
+            "tooltip": "Paint – 2 coats"
+          }
+        },
+        "next": "Next"
+      },
+      "screen2": {
+        "title": "Preference",
+        "economy": {
+          "label": "Economy",
+          "subtext": "I'm looking for budget-friendly painting without compromising on the quality!",
+          "finish": "Matt Finish",
+          "washability": "Non-Washable",
+          "durability": "Upto 2 years"
+        },
+        "premium": {
+          "label": "Premium",
+          "subtext": "I want my walls to have a classy and elegant feel!",
+          "finish": "Matt & Sheen Finish",
+          "washability": "Semi-Washable",
+          "durability": "Upto 5 years"
+        },
+        "luxury": {
+          "label": "Luxury",
+          "subtext": "I want my walls to look exquisite and royal, much to my friends' envy!",
+          "finish": "Matt & Sheen Finish",
+          "washability": "Fully-Washable",
+          "durability": "Upto 7 years"
+        },
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "estimate": {
+        "title": "Your Estimate",
+        "carpetAreaLabel": "Carpet Area",
+        "paintableAreaLabel": "Paintable Area",
+        "preferenceLabel": "Preference",
+        "tableCoatHeader": "Coat",
+        "tableRateHeader": "Rate (₹/sq.ft.)",
+        "tableSubtotalHeader": "Subtotal",
+        "tableTotalLabel": "Total"
+      },
+      "quoteModal": {
+        "title": "Almost there...",
+        "cta": "Reveal Estimate"
       }
     },
     "home": {

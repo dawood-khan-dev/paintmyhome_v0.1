@@ -58,7 +58,7 @@ export const Header = ({ dictionary }: HeaderProps) => {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <QuoteModal dictionary={dictionary}>
+          <QuoteModal dictionary={dictionary} source="Header">
             <Button className="hidden md:inline">
               {dictionary.web.header.getQuote}
             </Button>
@@ -75,7 +75,7 @@ export const Header = ({ dictionary }: HeaderProps) => {
                   {item.title}
                 </Link>
               ))}
-              <QuoteModal dictionary={dictionary}>
+              <QuoteModal dictionary={dictionary} source="Header">
                 <Button>{dictionary.web.header.getQuote}</Button>
               </QuoteModal>
             </div>

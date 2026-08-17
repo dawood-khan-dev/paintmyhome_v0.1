@@ -4,8 +4,10 @@ const { GOOGLE_SHEETS_WEBHOOK_URL, GOOGLE_SHEETS_WEBHOOK_SECRET } = keys();
 
 interface QuoteRequest {
   city: string;
+  data?: string;
   name: string;
   phone: string;
+  source: string;
 }
 
 export const submitQuoteRequest = async (
