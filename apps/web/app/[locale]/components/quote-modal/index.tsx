@@ -28,7 +28,12 @@ import { submitQuote } from "@/app/[locale]/actions/submit-quote";
 
 interface QuoteModalProps {
   children: React.ReactNode;
+  cta?: string;
+  data?: string;
   dictionary: Dictionary;
+  onSuccess?: () => void;
+  source: string;
+  title?: string;
 }
 
 const quoteFormSchema = z.object({
@@ -40,7 +45,15 @@ const quoteFormSchema = z.object({
 
 type QuoteFormValues = z.infer<typeof quoteFormSchema>;
 
-export const QuoteModal = ({ dictionary, children }: QuoteModalProps) => {
+export const QuoteModal = ({
+  children,
+  cta,
+  data,
+  dictionary,
+  onSuccess,
+  source,
+  title,
+}: QuoteModalProps) => {
   const [open, setOpen] = useState(false);
   const copy = dictionary.web.header.getQuoteModal;
 
@@ -59,7 +72,13 @@ export const QuoteModal = ({ dictionary, children }: QuoteModalProps) => {
       return;
     }
 
-    const { error } = await submitQuote(values.name, values.phone, values.city);
+    const { error } = await submitQuote(
+      values.name,
+      values.phone,
+      values.city,
+      source,
+      data
+    );
 
     if (error) {
       toast.error(copy.error);
@@ -69,6 +88,7 @@ export const QuoteModal = ({ dictionary, children }: QuoteModalProps) => {
     toast.success(copy.success);
     form.reset();
     setOpen(false);
+    onSuccess?.();
   };
 
   return (
@@ -76,7 +96,7 @@ export const QuoteModal = ({ dictionary, children }: QuoteModalProps) => {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{copy.title}</DialogTitle>
+          <DialogTitle>{title ?? copy.title}</DialogTitle>
           <DialogDescription>{copy.description}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -144,7 +164,7 @@ export const QuoteModal = ({ dictionary, children }: QuoteModalProps) => {
               disabled={form.formState.isSubmitting}
               type="submit"
             >
-              {copy.cta}
+              {cta ?? copy.cta}
             </Button>
           </form>
         </Form>
