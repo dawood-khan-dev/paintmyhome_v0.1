@@ -4,6 +4,7 @@ import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
 import { Hero } from "./components/hero";
 import { HowWeHelpGrid } from "./components/how-we-help";
+import { ServicesGrid } from "./components/services";
 
 interface HomeProps {
   params: Promise<{
@@ -34,6 +35,7 @@ const Home = async ({ params }: HomeProps) => {
       )}
       <Hero dictionary={dictionary} />
       <HowWeHelpGrid dictionary={dictionary} />
+      <ServicesGrid dictionary={dictionary} />
     </>
   );
 };

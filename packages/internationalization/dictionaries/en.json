@@ -153,6 +153,38 @@
           }
         ]
       },
+      "services": {
+        "title": "Explore Painting Services",
+        "description": "From refreshing your interiors to protecting your home's exterior, explore the painting and related services you may need for your project.",
+        "cta": "Explore Service",
+        "items": [
+          {
+            "slug": "interior-painting",
+            "title": "Interior Painting",
+            "description": "Give your walls and living spaces a fresh, clean finish."
+          },
+          {
+            "slug": "exterior-painting",
+            "title": "Exterior Painting",
+            "description": "Refresh and protect your home's exterior with the right paint and finish."
+          },
+          {
+            "slug": "texture-decorative-painting",
+            "title": "Texture & Decorative Painting",
+            "description": "Add character to your walls with textures and decorative finishes."
+          },
+          {
+            "slug": "waterproofing",
+            "title": "Waterproofing",
+            "description": "Help protect your home from moisture, dampness and water-related damage."
+          },
+          {
+            "slug": "wood-metal-painting",
+            "title": "Wood & Metal Painting",
+            "description": "Refresh and protect doors, windows, grills, railings and other surfaces."
+          }
+        ]
+      },
       "features": {
         "title": "Powerful Tools for Modern Business",
         "description": "Discover how our cutting-edge features can revolutionize your daily operations.",
