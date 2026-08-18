@@ -132,6 +132,27 @@
       "cases": {
         "title": "Empowering Success Stories Across the Globe"
       },
+      "howWeHelp": {
+        "title": "How PaintMyHome Helps",
+        "items": [
+          {
+            "title": "Understand Your Cost",
+            "description": "Know what your painting project may cost before contacting anyone."
+          },
+          {
+            "title": "Compare Your Options",
+            "description": "Understand paint types, finishes, brands, and services."
+          },
+          {
+            "title": "Plan Your Project",
+            "description": "Make better decisions about your painting requirements."
+          },
+          {
+            "title": "Get Professional Help",
+            "description": "Request a quote when you are ready."
+          }
+        ]
+      },
       "features": {
         "title": "Powerful Tools for Modern Business",
         "description": "Discover how our cutting-edge features can revolutionize your daily operations.",
