@@ -21,7 +21,7 @@ export const HowWeHelpGrid = ({ dictionary }: HowWeHelpProps) => {
   const copy = dictionary.web.home.howWeHelp;
 
   return (
-    <div className="w-full pb-20 lg:pb-40">
+    <div className="w-full pt-10 pb-20 lg:pt-20 lg:pb-40">
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <h2 className="max-w-xl text-left font-regular text-3xl tracking-tighter md:text-5xl">
