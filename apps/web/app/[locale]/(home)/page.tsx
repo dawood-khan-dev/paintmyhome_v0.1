@@ -2,6 +2,7 @@ import { showBetaFeature } from "@repo/feature-flags";
 import { getDictionary } from "@repo/internationalization";
 import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
+import { GuidesGrid } from "./components/guides";
 import { Hero } from "./components/hero";
 import { HowWeHelpGrid } from "./components/how-we-help";
 import { ServicesGrid } from "./components/services";
@@ -36,6 +37,7 @@ const Home = async ({ params }: HomeProps) => {
       <Hero dictionary={dictionary} />
       <HowWeHelpGrid dictionary={dictionary} />
       <ServicesGrid dictionary={dictionary} />
+      <GuidesGrid dictionary={dictionary} />
     </>
   );
 };

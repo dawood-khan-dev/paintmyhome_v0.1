@@ -185,6 +185,11 @@
           }
         ]
       },
+      "guides": {
+        "title": "Painting Guides & Tips",
+        "description": "Helpful guides to understand painting costs, choose the right options, and plan your home painting project.",
+        "cta": "Read Guide"
+      },
       "features": {
         "title": "Powerful Tools for Modern Business",
         "description": "Discover how our cutting-edge features can revolutionize your daily operations.",

@@ -50,6 +50,7 @@ export interface Scalars {
 }))[],
     BSHBRichTextContentSchema: RichTextNode[],
     BSHBRichTextTOCSchema: RichTextTocNode[],
+    BSHBSelect__1329930045: 'homepage',
     Boolean: boolean,
     CodeSnippetLanguage: B_Language,
     DateTime: any,
@@ -222,10 +223,11 @@ export interface GuideComponent {
     /** ISO 8601 date string. */
     lastUpdated: Scalars['String']
     summary: Scalars['String']
+    tags: Scalars['BSHBSelect__1329930045'][]
     __typename: 'GuideComponent'
 }
 
-export type GuideComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'body__ASC' | 'body__DESC' | 'coverImage__ASC' | 'coverImage__DESC' | 'lastUpdated__ASC' | 'lastUpdated__DESC' | 'summary__ASC' | 'summary__DESC' | 'untitled__ASC' | 'untitled__DESC'
+export type GuideComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'body__ASC' | 'body__DESC' | 'coverImage__ASC' | 'coverImage__DESC' | 'lastUpdated__ASC' | 'lastUpdated__DESC' | 'summary__ASC' | 'summary__DESC' | 'tags__ASC' | 'tags__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface Guides {
     _analyticsKey: Scalars['String']
@@ -720,11 +722,12 @@ export interface GuideComponentGenqlSelection{
     /** ISO 8601 date string. */
     lastUpdated?: boolean | number
     summary?: boolean | number
+    tags?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "GuideComponent"
 }
 
-export interface GuideComponentFilterInput {AND?: (GuideComponentFilterInput | null),OR?: (GuideComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),lastUpdated?: (DateFilter | null),summary?: (StringFilter | null)}
+export interface GuideComponentFilterInput {AND?: (GuideComponentFilterInput | null),OR?: (GuideComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),lastUpdated?: (DateFilter | null),summary?: (StringFilter | null),tags?: (SelectFilter | null)}
 
 export interface GuideComponentSearchInput {
 /** Searchable fields for query */

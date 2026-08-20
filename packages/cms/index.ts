@@ -76,6 +76,18 @@ export const guides = {
     },
   }),
 
+  homepageGuidesQuery: {
+    guides: {
+      __args: {
+        filter: {
+          tags: { includes: "homepage" },
+        },
+        first: 5,
+      },
+      items: guideMetaFragment,
+    },
+  } satisfies QueryGenqlSelection,
+
   getGuides: async (): Promise<GuideMeta[]> => {
     if (!basehub) {
       return [];
@@ -113,6 +125,19 @@ export const guides = {
       return data.guides.item;
     } catch {
       return null;
+    }
+  },
+
+  getHomepageGuides: async (): Promise<GuideMeta[]> => {
+    if (!basehub) {
+      return [];
+    }
+
+    try {
+      const data = await basehub.query(guides.homepageGuidesQuery);
+      return data.guides.items;
+    } catch {
+      return [];
     }
   },
 };
