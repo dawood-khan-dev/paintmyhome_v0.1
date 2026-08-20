@@ -23,27 +23,19 @@ const imageFragment = fragmentOn("BlockImage", {
 });
 
 /* -------------------------------------------------------------------------------------------------
- * Blog Fragments & Queries
+ * Guide Fragments & Queries
  * -----------------------------------------------------------------------------------------------*/
 
-const postMetaFragment = fragmentOn("PostsItem", {
+const guideMetaFragment = fragmentOn("GuideComponent", {
   _slug: true,
   _title: true,
-  authors: {
-    _title: true,
-    avatar: imageFragment,
-    xUrl: true,
-  },
-  categories: {
-    _title: true,
-  },
-  date: true,
-  description: true,
-  image: imageFragment,
+  summary: true,
+  coverImage: imageFragment,
+  lastUpdated: true,
 });
 
-const postFragment = fragmentOn("PostsItem", {
-  ...postMetaFragment,
+const guideFragment = fragmentOn("GuideComponent", {
+  ...guideMetaFragment,
   body: {
     plainText: true,
     json: {
@@ -54,189 +46,71 @@ const postFragment = fragmentOn("PostsItem", {
   },
 });
 
-export type PostMeta = fragmentOn.infer<typeof postMetaFragment>;
-export type Post = fragmentOn.infer<typeof postFragment>;
+export type GuideMeta = fragmentOn.infer<typeof guideMetaFragment>;
+export type Guide = fragmentOn.infer<typeof guideFragment>;
 
-export const blog = {
-  postsQuery: {
-    blog: {
-      posts: {
-        items: postMetaFragment,
-      },
+export const guides = {
+  guidesQuery: {
+    guides: {
+      items: guideMetaFragment,
     },
   } satisfies QueryGenqlSelection,
 
-  latestPostQuery: {
-    blog: {
-      posts: {
-        __args: {
-          orderBy: "_sys_createdAt__DESC" as const,
-        },
-        item: postFragment,
-      },
-    },
-  } satisfies QueryGenqlSelection,
-
-  postQuery: (slug: string) => ({
-    blog: {
-      posts: {
-        __args: {
-          filter: {
-            _sys_slug: { eq: slug },
-          },
-        },
-        item: postFragment,
-      },
-    },
-  }),
-
-  getPosts: async (): Promise<PostMeta[]> => {
-    if (!basehub) {
-      return [];
-    }
-
-    try {
-      const data = await basehub.query(blog.postsQuery);
-      return data.blog.posts.items;
-    } catch {
-      return [];
-    }
-  },
-
-  getLatestPost: async (): Promise<Post | null> => {
-    if (!basehub) {
-      return null;
-    }
-
-    try {
-      const data = await basehub.query(blog.latestPostQuery);
-      return data.blog.posts.item;
-    } catch {
-      return null;
-    }
-  },
-
-  getPost: async (slug: string): Promise<Post | null> => {
-    if (!basehub) {
-      return null;
-    }
-
-    try {
-      const query = blog.postQuery(slug);
-      const data = await basehub.query(query);
-      return data.blog.posts.item;
-    } catch {
-      return null;
-    }
-  },
-};
-
-/* -------------------------------------------------------------------------------------------------
- * Legal Fragments & Queries
- * -----------------------------------------------------------------------------------------------*/
-
-const legalPostMetaFragment = fragmentOn("LegalPagesItem", {
-  _slug: true,
-  _title: true,
-  description: true,
-});
-
-const legalPostFragment = fragmentOn("LegalPagesItem", {
-  ...legalPostMetaFragment,
-  body: {
-    plainText: true,
-    json: {
-      content: true,
-      toc: true,
-    },
-    readingTime: true,
-  },
-});
-
-export type LegalPostMeta = fragmentOn.infer<typeof legalPostMetaFragment>;
-export type LegalPost = fragmentOn.infer<typeof legalPostFragment>;
-
-export const legal = {
-  postsMetaQuery: {
-    legalPages: {
-      items: legalPostMetaFragment,
-    },
-  } satisfies QueryGenqlSelection,
-
-  postsQuery: {
-    legalPages: {
-      items: legalPostFragment,
-    },
-  } satisfies QueryGenqlSelection,
-
-  latestPostQuery: {
-    legalPages: {
+  latestGuideQuery: {
+    guides: {
       __args: {
         orderBy: "_sys_createdAt__DESC" as const,
       },
-      item: legalPostFragment,
+      item: guideFragment,
     },
   } satisfies QueryGenqlSelection,
 
-  postQuery: (slug: string) => ({
-    legalPages: {
+  guideQuery: (slug: string) => ({
+    guides: {
       __args: {
         filter: {
           _sys_slug: { eq: slug },
         },
       },
-      item: legalPostFragment,
+      item: guideFragment,
     },
   }),
 
-  getPostsMeta: async (): Promise<LegalPostMeta[]> => {
+  getGuides: async (): Promise<GuideMeta[]> => {
     if (!basehub) {
       return [];
     }
 
     try {
-      const data = await basehub.query(legal.postsMetaQuery);
-      return data.legalPages.items;
+      const data = await basehub.query(guides.guidesQuery);
+      return data.guides.items;
     } catch {
       return [];
     }
   },
 
-  getPosts: async (): Promise<LegalPost[]> => {
-    if (!basehub) {
-      return [];
-    }
-
-    try {
-      const data = await basehub.query(legal.postsQuery);
-      return data.legalPages.items;
-    } catch {
-      return [];
-    }
-  },
-
-  getLatestPost: async (): Promise<LegalPost | null> => {
+  getLatestGuide: async (): Promise<Guide | null> => {
     if (!basehub) {
       return null;
     }
 
     try {
-      const data = await basehub.query(legal.latestPostQuery);
-      return data.legalPages.item;
+      const data = await basehub.query(guides.latestGuideQuery);
+      return data.guides.item;
     } catch {
       return null;
     }
   },
 
-  getPost: async (slug: string): Promise<LegalPost | null> => {
+  getGuide: async (slug: string): Promise<Guide | null> => {
     if (!basehub) {
       return null;
     }
 
     try {
-      const query = legal.postQuery(slug);
+      const query = guides.guideQuery(slug);
       const data = await basehub.query(query);
-      return data.legalPages.item;
+      return data.guides.item;
     } catch {
       return null;
     }

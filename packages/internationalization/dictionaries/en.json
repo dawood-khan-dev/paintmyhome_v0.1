@@ -126,7 +126,7 @@
         "description": "Get a realistic estimate of your painting cost, understand your options, and connect with trusted professionals."
       },
       "hero": {
-        "announcement": "Read our latest article",
+        "announcement": "Read our latest guide",
         "cta": "Calculate Painting Cost"
       },
       "cases": {
@@ -306,10 +306,10 @@
         "description": "Join thousands of forward-thinking businesses who have already modernized their operations. Our platform offers the tools, support, and efficiency you need to succeed in today's competitive market. Get started in minutes."
       }
     },
-    "blog": {
+    "guides": {
       "meta": {
-        "title": "Blog",
-        "description": "Thoughts, ideas, and opinions."
+        "title": "Guides",
+        "description": "Practical, cost-focused guides for painting your home in India."
       }
     },
     "contact": {

@@ -1,4 +1,4 @@
-import { blog } from "@repo/cms";
+import { guides } from "@repo/cms";
 import { Button } from "@repo/design-system/components/ui/button";
 import type { Dictionary } from "@repo/internationalization";
 import { Calculator, MessageSquare, MoveRight } from "lucide-react";
@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 export const Hero = async ({ dictionary }: HeroProps) => {
-  const latestPost = await blog.getLatestPost();
+  const latestGuide = await guides.getLatestGuide();
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -25,10 +25,10 @@ export const Hero = async ({ dictionary }: HeroProps) => {
       <div className="absolute inset-0 bg-black/50" />
       <div className="container relative mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40 lg:pl-64">
-          {latestPost && (
+          {latestGuide && (
             <div>
               <Button asChild className="gap-4" size="sm" variant="secondary">
-                <Link href={`/guides/${latestPost._slug}`}>
+                <Link href={`/guides/${latestGuide._slug}`}>
                   {dictionary.web.home.hero.announcement}{" "}
                   <MoveRight className="h-4 w-4" />
                 </Link>

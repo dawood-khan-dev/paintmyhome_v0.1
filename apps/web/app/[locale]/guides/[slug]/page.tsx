@@ -1,7 +1,6 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { blog } from "@repo/cms";
+import { guides } from "@repo/cms";
 import { Body } from "@repo/cms/components/body";
-import { CodeBlock } from "@repo/cms/components/code-block";
 import { Feed } from "@repo/cms/components/feed";
 import { Image } from "@repo/cms/components/image";
 import { TableOfContents } from "@repo/cms/components/toc";
@@ -18,7 +17,7 @@ const protocol = env.VERCEL_PROJECT_PRODUCTION_URL?.startsWith("https")
   : "http";
 const url = new URL(`${protocol}://${env.VERCEL_PROJECT_PRODUCTION_URL}`);
 
-interface BlogPostProperties {
+interface GuidePageProperties {
   readonly params: Promise<{
     slug: string;
   }>;
@@ -26,38 +25,38 @@ interface BlogPostProperties {
 
 export const generateMetadata = async ({
   params,
-}: BlogPostProperties): Promise<Metadata> => {
+}: GuidePageProperties): Promise<Metadata> => {
   const { slug } = await params;
-  const post = await blog.getPost(slug);
+  const guide = await guides.getGuide(slug);
 
-  if (!post) {
+  if (!guide) {
     return {};
   }
 
   return createMetadata({
-    title: post._title,
-    description: post.description,
-    image: post.image.url,
+    title: guide._title,
+    description: guide.summary,
+    image: guide.coverImage?.url,
   });
 };
 
 export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
-  const posts = await blog.getPosts();
+  const allGuides = await guides.getGuides();
 
-  return posts.map(({ _slug }) => ({ slug: _slug }));
+  return allGuides.map(({ _slug }) => ({ slug: _slug }));
 };
 
-const BlogPost = async ({ params }: BlogPostProperties) => {
+const GuidePage = async ({ params }: GuidePageProperties) => {
   const { slug } = await params;
 
   return (
-    <Feed queries={[blog.postQuery(slug)]}>
+    <Feed queries={[guides.guideQuery(slug)]}>
       {async ([data]) => {
         "use server";
 
-        const page = data.blog.posts.item;
+        const guide = data.guides.item;
 
-        if (!page) {
+        if (!guide) {
           notFound();
         }
 
@@ -65,18 +64,16 @@ const BlogPost = async ({ params }: BlogPostProperties) => {
           <>
             <JsonLd
               code={{
-                "@type": "BlogPosting",
+                "@type": "Article",
                 "@context": "https://schema.org",
-                datePublished: page.date,
-                description: page.description,
+                description: guide.summary,
                 mainEntityOfPage: {
                   "@type": "WebPage",
-                  "@id": new URL(`/guides/${page._slug}`, url).toString(),
+                  "@id": new URL(`/guides/${guide._slug}`, url).toString(),
                 },
-                headline: page._title,
-                image: page.image.url,
-                dateModified: page.date,
-                author: page.authors.at(0)?._title,
+                headline: guide._title,
+                image: guide.coverImage?.url,
+                dateModified: guide.lastUpdated,
                 isAccessibleForFree: true,
               }}
             />
@@ -92,41 +89,31 @@ const BlogPost = async ({ params }: BlogPostProperties) => {
                 <div className="sm:flex-1">
                   <div className="prose prose-neutral dark:prose-invert max-w-none">
                     <h1 className="scroll-m-20 text-balance font-extrabold text-4xl tracking-tight lg:text-5xl">
-                      {page._title}
+                      {guide._title}
                     </h1>
                     <p className="text-balance leading-7 [&:not(:first-child)]:mt-6">
-                      {page.description}
+                      {guide.summary}
                     </p>
-                    {page.image ? (
+                    {guide.coverImage ? (
                       <Image
-                        alt={page.image.alt ?? ""}
+                        alt={guide.coverImage.alt ?? ""}
                         className="my-16 h-full w-full rounded-xl"
-                        height={page.image.height}
+                        height={guide.coverImage.height}
                         priority
-                        src={page.image.url}
-                        width={page.image.width}
+                        src={guide.coverImage.url}
+                        width={guide.coverImage.width}
                       />
                     ) : undefined}
                     <div className="mx-auto max-w-prose">
-                      <Body
-                        components={{
-                          pre: ({ code, language }) => (
-                            <CodeBlock
-                              snippets={[{ code, language }]}
-                              theme="vesper"
-                            />
-                          ),
-                        }}
-                        content={page.body.json.content}
-                      />
+                      <Body content={guide.body.json.content} />
                     </div>
                   </div>
                 </div>
                 <div className="sticky top-24 hidden shrink-0 md:block">
                   <Sidebar
-                    date={new Date(page.date)}
-                    readingTime={`${page.body.readingTime} min read`}
-                    toc={<TableOfContents data={page.body.json.toc} />}
+                    lastUpdated={new Date(guide.lastUpdated)}
+                    readingTime={`${guide.body.readingTime} min read`}
+                    toc={<TableOfContents data={guide.body.json.toc} />}
                   />
                 </div>
               </div>
@@ -138,4 +125,4 @@ const BlogPost = async ({ params }: BlogPostProperties) => {
   );
 };
 
-export default BlogPost;
+export default GuidePage;
