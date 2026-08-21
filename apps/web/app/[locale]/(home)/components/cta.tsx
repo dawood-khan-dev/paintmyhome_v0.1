@@ -1,8 +1,8 @@
 import { Button } from "@repo/design-system/components/ui/button";
 import type { Dictionary } from "@repo/internationalization";
-import { MoveRight, PhoneCall } from "lucide-react";
+import { Calculator, MessageSquare } from "lucide-react";
 import Link from "next/link";
-import { env } from "@/env";
+import { QuoteModal } from "@/app/[locale]/components/quote-modal";
 
 interface CTAProps {
   dictionary: Dictionary;
@@ -20,19 +20,19 @@ export const CTA = ({ dictionary }: CTAProps) => (
             {dictionary.web.home.cta.description}
           </p>
         </div>
-        <div className="flex flex-row gap-4">
-          <Button asChild className="gap-4" variant="outline">
-            <Link href="/contact">
-              {dictionary.web.global.primaryCta}{" "}
-              <PhoneCall className="h-4 w-4" />
+        <div className="flex flex-row gap-3">
+          <Button asChild className="gap-4" size="lg">
+            <Link href="/painting-cost-calculator">
+              {dictionary.web.home.hero.cta}{" "}
+              <Calculator className="h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild className="gap-4">
-            <Link href={env.NEXT_PUBLIC_APP_URL}>
-              {dictionary.web.global.secondaryCta}{" "}
-              <MoveRight className="h-4 w-4" />
-            </Link>
-          </Button>
+          <QuoteModal dictionary={dictionary} source="FinalCTA">
+            <Button className="gap-4" size="lg" variant="outline">
+              {dictionary.web.header.getQuote}{" "}
+              <MessageSquare className="h-4 w-4" />
+            </Button>
+          </QuoteModal>
         </div>
       </div>
     </div>
