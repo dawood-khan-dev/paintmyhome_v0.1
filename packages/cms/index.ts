@@ -143,6 +143,44 @@ export const guides = {
 };
 
 /* -------------------------------------------------------------------------------------------------
+ * About Fragments & Queries
+ * -----------------------------------------------------------------------------------------------*/
+
+const aboutFragment = fragmentOn("About", {
+  title: true,
+  summary: true,
+  body: {
+    plainText: true,
+    json: {
+      content: true,
+      toc: true,
+    },
+    readingTime: true,
+  },
+});
+
+export type About = fragmentOn.infer<typeof aboutFragment>;
+
+export const about = {
+  aboutQuery: {
+    about: aboutFragment,
+  } satisfies QueryGenqlSelection,
+
+  getAbout: async (): Promise<About | null> => {
+    if (!basehub) {
+      return null;
+    }
+
+    try {
+      const data = await basehub.query(about.aboutQuery);
+      return data.about;
+    } catch {
+      return null;
+    }
+  },
+};
+
+/* -------------------------------------------------------------------------------------------------
  * Service Fragments & Queries
  * -----------------------------------------------------------------------------------------------*/
 

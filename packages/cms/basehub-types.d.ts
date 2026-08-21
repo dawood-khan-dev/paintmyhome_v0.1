@@ -61,6 +61,21 @@ export interface Scalars {
     String: string,
 }
 
+export interface About {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    body: (Body | null)
+    summary: (Scalars['String'] | null)
+    title: (Scalars['String'] | null)
+    __typename: 'About'
+}
+
 export type AnalyticsKeyScope = 'query' | 'send'
 
 export interface BaseRichTextJson {
@@ -100,7 +115,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (GuideComponent | Guides | ServiceComponent | Services | _AgentStart | guideComponent_AsList | serviceComponent_AsList) & { __isUnion?: true }
+export type BlockDocument = (About | GuideComponent | Guides | ServiceComponent | Services | _AgentStart | guideComponent_AsList | serviceComponent_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -170,7 +185,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export type BlockRichText = (Body | Body_1) & { __isUnion?: true }
+export type BlockRichText = (Body | Body_1 | Body_2) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -216,6 +231,21 @@ export interface Body_1RichText {
     __typename: 'Body_1RichText'
 }
 
+export interface Body_2 {
+    html: Scalars['String']
+    json: Body_2RichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Body_2'
+}
+
+export interface Body_2RichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'Body_2RichText'
+}
+
 export interface GetUploadSignedURL {
     signedURL: Scalars['String']
     uploadURL: Scalars['String']
@@ -233,7 +263,7 @@ export interface GuideComponent {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    body: Body_1
+    body: Body_2
     coverImage: (BlockImage | null)
     /** ISO 8601 date string. */
     lastUpdated: Scalars['String']
@@ -319,6 +349,7 @@ export interface Query {
     /** The structure of the repository. Used by START. */
     _structure: Scalars['JSON']
     _sys: RepoSys
+    about: About
     guide: GuideComponent
     guides: Guides
     service: ServiceComponent
@@ -338,7 +369,7 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson | BodyRichText | Body_1RichText) & { __isUnion?: true }
+export type RichTextJson = (BaseRichTextJson | BodyRichText | Body_1RichText | Body_2RichText) & { __isUnion?: true }
 
 export interface SearchHighlight {
     /** The field/path that was matched (e.g., "title", "body.content") */
@@ -359,7 +390,7 @@ export interface ServiceComponent {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    body: Body
+    body: Body_1
     coverImage: (BlockImage | null)
     summary: Scalars['String']
     __typename: 'ServiceComponent'
@@ -551,6 +582,28 @@ export interface serviceComponent_AsList {
     __typename: 'serviceComponent_AsList'
 }
 
+export interface AboutGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    body?: BodyGenqlSelection
+    summary?: boolean | number
+    title?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "About"
+}
+
 export interface BaseRichTextJsonGenqlSelection{
     blocks?: boolean | number
     content?: boolean | number
@@ -609,6 +662,7 @@ export interface BlockDocumentGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
+    on_About?: AboutGenqlSelection
     on_GuideComponent?: GuideComponentGenqlSelection
     on_Guides?: GuidesGenqlSelection
     on_ServiceComponent?: ServiceComponentGenqlSelection
@@ -730,6 +784,7 @@ export interface BlockRichTextGenqlSelection{
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     on_Body?: BodyGenqlSelection
     on_Body_1?: Body_1GenqlSelection
+    on_Body_2?: Body_2GenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockRichText"
 }
@@ -795,6 +850,29 @@ export interface Body_1RichTextGenqlSelection{
     __fragmentOn?: "Body_1RichText"
 }
 
+export interface Body_2GenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: Body_2RichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Body_2"
+}
+
+export interface Body_2RichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Body_2RichText"
+}
+
 export interface DateFilter {eq?: (Scalars['DateTime'] | null),isAfter?: (Scalars['DateTime'] | null),isBefore?: (Scalars['DateTime'] | null),isNull?: (Scalars['Boolean'] | null),neq?: (Scalars['DateTime'] | null),onOrAfter?: (Scalars['DateTime'] | null),onOrBefore?: (Scalars['DateTime'] | null)}
 
 export interface GetUploadSignedURLGenqlSelection{
@@ -821,7 +899,7 @@ export interface GuideComponentGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    body?: Body_1GenqlSelection
+    body?: Body_2GenqlSelection
     coverImage?: BlockImageGenqlSelection
     /** ISO 8601 date string. */
     lastUpdated?: boolean | number
@@ -987,6 +1065,7 @@ export interface QueryGenqlSelection{
     /** Whether to include type options in the structure. */
     withTypeOptions?: (Scalars['Boolean'] | null)} } | boolean | number
     _sys?: RepoSysGenqlSelection
+    about?: AboutGenqlSelection
     guide?: GuideComponentGenqlSelection
     guides?: (GuidesGenqlSelection & { __args?: {
     /** Filter by a field. */
@@ -1034,6 +1113,7 @@ export interface RichTextJsonGenqlSelection{
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
     on_BodyRichText?: BodyRichTextGenqlSelection
     on_Body_1RichText?: Body_1RichTextGenqlSelection
+    on_Body_2RichText?: Body_2RichTextGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "RichTextJson"
 }
@@ -1066,7 +1146,7 @@ export interface ServiceComponentGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    body?: BodyGenqlSelection
+    body?: Body_1GenqlSelection
     coverImage?: BlockImageGenqlSelection
     summary?: boolean | number
     __typename?: boolean | number
@@ -1323,6 +1403,10 @@ export interface serviceComponent_AsListGenqlSelection{
 }
 
 export interface FragmentsMap {
+  About: {
+    root: About,
+    selection: AboutGenqlSelection,
+}
   BaseRichTextJson: {
     root: BaseRichTextJson,
     selection: BaseRichTextJsonGenqlSelection,
@@ -1386,6 +1470,14 @@ export interface FragmentsMap {
   Body_1RichText: {
     root: Body_1RichText,
     selection: Body_1RichTextGenqlSelection,
+}
+  Body_2: {
+    root: Body_2,
+    selection: Body_2GenqlSelection,
+}
+  Body_2RichText: {
+    root: Body_2RichText,
+    selection: Body_2RichTextGenqlSelection,
 }
   GetUploadSignedURL: {
     root: GetUploadSignedURL,
