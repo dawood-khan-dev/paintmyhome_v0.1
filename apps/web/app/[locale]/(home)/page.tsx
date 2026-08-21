@@ -6,6 +6,7 @@ import { GuidesGrid } from "./components/guides";
 import { Hero } from "./components/hero";
 import { HowWeHelpGrid } from "./components/how-we-help";
 import { ServicesGrid } from "./components/services";
+import { WhyPaintMyHome } from "./components/why-paintmyhome";
 
 interface HomeProps {
   params: Promise<{
@@ -38,6 +39,7 @@ const Home = async ({ params }: HomeProps) => {
       <HowWeHelpGrid dictionary={dictionary} />
       <ServicesGrid dictionary={dictionary} />
       <GuidesGrid dictionary={dictionary} />
+      <WhyPaintMyHome dictionary={dictionary} />
     </>
   );
 };

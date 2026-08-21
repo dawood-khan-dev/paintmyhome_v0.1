@@ -190,25 +190,21 @@
         "description": "Helpful guides to understand painting costs, choose the right options, and plan your home painting project.",
         "cta": "Read Guide"
       },
-      "features": {
-        "title": "Powerful Tools for Modern Business",
-        "description": "Discover how our cutting-edge features can revolutionize your daily operations.",
+      "whyPaintMyHome": {
+        "title": "Everything You Need to Plan Your Painting Project",
+        "description": "From estimating your painting cost to choosing the right options for your home, PaintMyHome gives you the tools and information you need to plan with confidence.",
         "items": [
           {
-            "title": "Streamlined Operations",
-            "description": "Our platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+            "title": "Know Your Cost",
+            "description": "Get an initial estimate before you start collecting quotations."
           },
           {
-            "title": "Real-Time Analytics",
-            "description": "Get instant insights into your business performance with comprehensive analytics and reporting tools."
+            "title": "Make Informed Choices",
+            "description": "Understand paint options, finishes, preparation, and the factors that affect your project."
           },
           {
-            "title": "Automated Workflows",
-            "description": "Save time and reduce errors with intelligent automation that handles repetitive tasks for you."
-          },
-          {
-            "title": "Secure Transactions",
-            "description": "Rest easy knowing your business operations are protected by enterprise-grade security and encryption."
+            "title": "Find the Right Service",
+            "description": "Explore painting services and take the next step when you're ready to get your project started."
           }
         ]
       },
