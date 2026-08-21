@@ -100,7 +100,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (GuideComponent | Guides | _AgentStart | guideComponent_AsList) & { __isUnion?: true }
+export type BlockDocument = (GuideComponent | Guides | ServiceComponent | Services | _AgentStart | guideComponent_AsList | serviceComponent_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -159,7 +159,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (Guides | guideComponent_AsList) & { __isUnion?: true }
+export type BlockList = (Guides | Services | guideComponent_AsList | serviceComponent_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -170,7 +170,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export type BlockRichText = (Body) & { __isUnion?: true }
+export type BlockRichText = (Body | Body_1) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -201,6 +201,21 @@ export interface BodyRichText {
     __typename: 'BodyRichText'
 }
 
+export interface Body_1 {
+    html: Scalars['String']
+    json: Body_1RichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Body_1'
+}
+
+export interface Body_1RichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'Body_1RichText'
+}
+
 export interface GetUploadSignedURL {
     signedURL: Scalars['String']
     uploadURL: Scalars['String']
@@ -218,7 +233,7 @@ export interface GuideComponent {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    body: Body
+    body: Body_1
     coverImage: (BlockImage | null)
     /** ISO 8601 date string. */
     lastUpdated: Scalars['String']
@@ -306,6 +321,8 @@ export interface Query {
     _sys: RepoSys
     guide: GuideComponent
     guides: Guides
+    service: ServiceComponent
+    services: Services
     __typename: 'Query'
 }
 
@@ -321,7 +338,7 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson | BodyRichText) & { __isUnion?: true }
+export type RichTextJson = (BaseRichTextJson | BodyRichText | Body_1RichText) & { __isUnion?: true }
 
 export interface SearchHighlight {
     /** The field/path that was matched (e.g., "title", "body.content") */
@@ -329,6 +346,44 @@ export interface SearchHighlight {
     /** HTML snippet with <mark> tags around the matched terms */
     snippet: Scalars['String']
     __typename: 'SearchHighlight'
+}
+
+export interface ServiceComponent {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight[] | null)
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    body: Body
+    coverImage: (BlockImage | null)
+    summary: Scalars['String']
+    __typename: 'ServiceComponent'
+}
+
+export type ServiceComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'body__ASC' | 'body__DESC' | 'coverImage__ASC' | 'coverImage__DESC' | 'summary__ASC' | 'summary__DESC'
+
+export interface Services {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (ServiceComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: ServiceComponent[]
+    __typename: 'Services'
 }
 
 export interface TransactionStatus {
@@ -454,6 +509,7 @@ export interface _agents {
 
 export interface _components {
     guide: guideComponent_AsList
+    service: serviceComponent_AsList
     __typename: '_components'
 }
 
@@ -474,6 +530,25 @@ export interface guideComponent_AsList {
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items: GuideComponent[]
     __typename: 'guideComponent_AsList'
+}
+
+export interface serviceComponent_AsList {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (ServiceComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: ServiceComponent[]
+    __typename: 'serviceComponent_AsList'
 }
 
 export interface BaseRichTextJsonGenqlSelection{
@@ -536,8 +611,11 @@ export interface BlockDocumentGenqlSelection{
     _title?: boolean | number
     on_GuideComponent?: GuideComponentGenqlSelection
     on_Guides?: GuidesGenqlSelection
+    on_ServiceComponent?: ServiceComponentGenqlSelection
+    on_Services?: ServicesGenqlSelection
     on__AgentStart?: _AgentStartGenqlSelection
     on_guideComponent_AsList?: guideComponent_AsListGenqlSelection
+    on_serviceComponent_AsList?: serviceComponent_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockDocument"
 }
@@ -621,7 +699,9 @@ export interface BlockListGenqlSelection{
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
     on_Guides?: GuidesGenqlSelection
+    on_Services?: ServicesGenqlSelection
     on_guideComponent_AsList?: guideComponent_AsListGenqlSelection
+    on_serviceComponent_AsList?: serviceComponent_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockList"
 }
@@ -649,6 +729,7 @@ export interface BlockRichTextGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     on_Body?: BodyGenqlSelection
+    on_Body_1?: Body_1GenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockRichText"
 }
@@ -691,6 +772,29 @@ export interface BodyRichTextGenqlSelection{
     __fragmentOn?: "BodyRichText"
 }
 
+export interface Body_1GenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: Body_1RichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Body_1"
+}
+
+export interface Body_1RichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Body_1RichText"
+}
+
 export interface DateFilter {eq?: (Scalars['DateTime'] | null),isAfter?: (Scalars['DateTime'] | null),isBefore?: (Scalars['DateTime'] | null),isNull?: (Scalars['Boolean'] | null),neq?: (Scalars['DateTime'] | null),onOrAfter?: (Scalars['DateTime'] | null),onOrBefore?: (Scalars['DateTime'] | null)}
 
 export interface GetUploadSignedURLGenqlSelection{
@@ -717,7 +821,7 @@ export interface GuideComponentGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    body?: BodyGenqlSelection
+    body?: Body_1GenqlSelection
     coverImage?: BlockImageGenqlSelection
     /** ISO 8601 date string. */
     lastUpdated?: boolean | number
@@ -895,6 +999,18 @@ export interface QueryGenqlSelection{
     search?: (GuideComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    service?: ServiceComponentGenqlSelection
+    services?: (ServicesGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (ServiceComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (ServiceComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (ServiceComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "Query"
 }
@@ -917,6 +1033,7 @@ export interface RichTextJsonGenqlSelection{
     toc?: boolean | number
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
     on_BodyRichText?: BodyRichTextGenqlSelection
+    on_Body_1RichText?: Body_1RichTextGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "RichTextJson"
 }
@@ -931,6 +1048,64 @@ export interface SearchHighlightGenqlSelection{
 }
 
 export interface SelectFilter {excludes?: (Scalars['String'] | null),excludesAll?: (Scalars['String'][] | null),includes?: (Scalars['String'] | null),includesAll?: (Scalars['String'][] | null),includesAny?: (Scalars['String'][] | null),isEmpty?: (Scalars['Boolean'] | null)}
+
+export interface ServiceComponentGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlightGenqlSelection
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    body?: BodyGenqlSelection
+    coverImage?: BlockImageGenqlSelection
+    summary?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "ServiceComponent"
+}
+
+export interface ServiceComponentFilterInput {AND?: (ServiceComponentFilterInput | null),OR?: (ServiceComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),summary?: (StringFilter | null)}
+
+export interface ServiceComponentSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
+
+export interface ServicesGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: ServiceComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: ServiceComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "Services"
+}
 
 export interface StringFilter {contains?: (Scalars['String'] | null),endsWith?: (Scalars['String'] | null),eq?: (Scalars['String'] | null),in?: (Scalars['String'][] | null),isNull?: (Scalars['Boolean'] | null),matches?: (StringMatchesFilter | null),notEq?: (Scalars['String'] | null),notIn?: (Scalars['String'][] | null),startsWith?: (Scalars['String'] | null)}
 
@@ -1080,6 +1255,17 @@ export interface _componentsGenqlSelection{
     search?: (GuideComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    service?: (serviceComponent_AsListGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (ServiceComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (ServiceComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (ServiceComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "_components"
 }
@@ -1108,6 +1294,32 @@ export interface guideComponent_AsListGenqlSelection{
     items?: GuideComponentGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "guideComponent_AsList"
+}
+
+export interface serviceComponent_AsListGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: ServiceComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: ServiceComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "serviceComponent_AsList"
 }
 
 export interface FragmentsMap {
@@ -1167,6 +1379,14 @@ export interface FragmentsMap {
     root: BodyRichText,
     selection: BodyRichTextGenqlSelection,
 }
+  Body_1: {
+    root: Body_1,
+    selection: Body_1GenqlSelection,
+}
+  Body_1RichText: {
+    root: Body_1RichText,
+    selection: Body_1RichTextGenqlSelection,
+}
   GetUploadSignedURL: {
     root: GetUploadSignedURL,
     selection: GetUploadSignedURLGenqlSelection,
@@ -1206,6 +1426,14 @@ export interface FragmentsMap {
   SearchHighlight: {
     root: SearchHighlight,
     selection: SearchHighlightGenqlSelection,
+}
+  ServiceComponent: {
+    root: ServiceComponent,
+    selection: ServiceComponentGenqlSelection,
+}
+  Services: {
+    root: Services,
+    selection: ServicesGenqlSelection,
 }
   TransactionStatus: {
     root: TransactionStatus,
@@ -1250,5 +1478,9 @@ export interface FragmentsMap {
   guideComponent_AsList: {
     root: guideComponent_AsList,
     selection: guideComponent_AsListGenqlSelection,
+}
+  serviceComponent_AsList: {
+    root: serviceComponent_AsList,
+    selection: serviceComponent_AsListGenqlSelection,
 }
 }

@@ -141,3 +141,75 @@ export const guides = {
     }
   },
 };
+
+/* -------------------------------------------------------------------------------------------------
+ * Service Fragments & Queries
+ * -----------------------------------------------------------------------------------------------*/
+
+const serviceMetaFragment = fragmentOn("ServiceComponent", {
+  _slug: true,
+  _title: true,
+  summary: true,
+  coverImage: imageFragment,
+});
+
+const serviceFragment = fragmentOn("ServiceComponent", {
+  ...serviceMetaFragment,
+  body: {
+    plainText: true,
+    json: {
+      content: true,
+      toc: true,
+    },
+    readingTime: true,
+  },
+});
+
+export type ServiceMeta = fragmentOn.infer<typeof serviceMetaFragment>;
+export type Service = fragmentOn.infer<typeof serviceFragment>;
+
+export const services = {
+  servicesQuery: {
+    services: {
+      items: serviceMetaFragment,
+    },
+  } satisfies QueryGenqlSelection,
+
+  serviceQuery: (slug: string) => ({
+    services: {
+      __args: {
+        filter: {
+          _sys_slug: { eq: slug },
+        },
+      },
+      item: serviceFragment,
+    },
+  }),
+
+  getServices: async (): Promise<ServiceMeta[]> => {
+    if (!basehub) {
+      return [];
+    }
+
+    try {
+      const data = await basehub.query(services.servicesQuery);
+      return data.services.items;
+    } catch {
+      return [];
+    }
+  },
+
+  getService: async (slug: string): Promise<Service | null> => {
+    if (!basehub) {
+      return null;
+    }
+
+    try {
+      const query = services.serviceQuery(slug);
+      const data = await basehub.query(query);
+      return data.services.item;
+    } catch {
+      return null;
+    }
+  },
+};
