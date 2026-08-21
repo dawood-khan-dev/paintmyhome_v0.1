@@ -2,13 +2,12 @@ import { showBetaFeature } from "@repo/feature-flags";
 import { getDictionary } from "@repo/internationalization";
 import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
-import { Cases } from "./components/cases";
 import { CTA } from "./components/cta";
-import { FAQ } from "./components/faq";
-import { Features } from "./components/features";
+import { GuidesGrid } from "./components/guides";
 import { Hero } from "./components/hero";
-import { Stats } from "./components/stats";
-import { Testimonials } from "./components/testimonials";
+import { HowWeHelpGrid } from "./components/how-we-help";
+import { ServicesGrid } from "./components/services";
+import { WhyPaintMyHome } from "./components/why-paintmyhome";
 
 interface HomeProps {
   params: Promise<{
@@ -38,11 +37,10 @@ const Home = async ({ params }: HomeProps) => {
         </div>
       )}
       <Hero dictionary={dictionary} />
-      <Cases dictionary={dictionary} />
-      <Features dictionary={dictionary} />
-      <Stats dictionary={dictionary} />
-      <Testimonials dictionary={dictionary} />
-      <FAQ dictionary={dictionary} />
+      <HowWeHelpGrid dictionary={dictionary} />
+      <ServicesGrid dictionary={dictionary} />
+      <GuidesGrid dictionary={dictionary} />
+      <WhyPaintMyHome dictionary={dictionary} />
       <CTA dictionary={dictionary} />
     </>
   );

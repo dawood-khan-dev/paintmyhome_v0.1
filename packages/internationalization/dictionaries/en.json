@@ -15,11 +15,11 @@
         "title": "Get a Quote",
         "description": "Tell us a bit about yourself and we'll get back to you shortly.",
         "name": "Name",
-        "namePlaceholder": "Jane Doe",
+        "namePlaceholder": "Kumar",
         "phone": "Phone",
-        "phonePlaceholder": "(555) 123-4567",
+        "phonePlaceholder": "9441234567",
         "city": "City",
-        "cityPlaceholder": "Los Angeles",
+        "cityPlaceholder": "Bangalore",
         "cta": "Request a Quote",
         "success": "Thanks! We'll be in touch soon.",
         "error": "Something went wrong. Please try again."
@@ -126,31 +126,58 @@
         "description": "Get a realistic estimate of your painting cost, understand your options, and connect with trusted professionals."
       },
       "hero": {
-        "announcement": "Read our latest article",
+        "announcement": "Read our latest guide",
         "cta": "Calculate Painting Cost"
       },
       "cases": {
         "title": "Empowering Success Stories Across the Globe"
       },
-      "features": {
-        "title": "Powerful Tools for Modern Business",
-        "description": "Discover how our cutting-edge features can revolutionize your daily operations.",
+      "howWeHelp": {
+        "title": "How PaintMyHome Helps",
         "items": [
           {
-            "title": "Streamlined Operations",
-            "description": "Our platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+            "title": "Understand Your Cost",
+            "description": "Know what your painting project may cost before contacting anyone."
           },
           {
-            "title": "Real-Time Analytics",
-            "description": "Get instant insights into your business performance with comprehensive analytics and reporting tools."
+            "title": "Compare Your Options",
+            "description": "Understand paint types, finishes, brands, and services."
           },
           {
-            "title": "Automated Workflows",
-            "description": "Save time and reduce errors with intelligent automation that handles repetitive tasks for you."
+            "title": "Plan Your Project",
+            "description": "Make better decisions about your painting requirements."
           },
           {
-            "title": "Secure Transactions",
-            "description": "Rest easy knowing your business operations are protected by enterprise-grade security and encryption."
+            "title": "Get Professional Help",
+            "description": "Request a quote when you are ready."
+          }
+        ]
+      },
+      "services": {
+        "title": "Explore Painting Services",
+        "description": "From refreshing your interiors to protecting your home's exterior, explore the painting and related services you may need for your project.",
+        "cta": "Explore Service"
+      },
+      "guides": {
+        "title": "Painting Guides & Tips",
+        "description": "Helpful guides to understand painting costs, choose the right options, and plan your home painting project.",
+        "cta": "Read Guide"
+      },
+      "whyPaintMyHome": {
+        "title": "Everything You Need to Plan Your Painting Project",
+        "description": "From estimating your painting cost to choosing the right options for your home, PaintMyHome gives you the tools and information you need to plan with confidence.",
+        "items": [
+          {
+            "title": "Know Your Cost",
+            "description": "Get an initial estimate before you start collecting quotations."
+          },
+          {
+            "title": "Make Informed Choices",
+            "description": "Understand paint options, finishes, preparation, and the factors that affect your project."
+          },
+          {
+            "title": "Find the Right Service",
+            "description": "Explore painting services and take the next step when you're ready to get your project started."
           }
         ]
       },
@@ -249,14 +276,20 @@
         ]
       },
       "cta": {
-        "title": "Start Your Business Transformation",
-        "description": "Join thousands of forward-thinking businesses who have already modernized their operations. Our platform offers the tools, support, and efficiency you need to succeed in today's competitive market. Get started in minutes."
+        "title": "Ready to Start Your Painting Project?",
+        "description": "Get a quick estimate of your painting cost or tell us about your project. We'll help you take the next step with confidence."
       }
     },
-    "blog": {
+    "guides": {
       "meta": {
-        "title": "Blog",
-        "description": "Thoughts, ideas, and opinions."
+        "title": "Guides",
+        "description": "Practical, cost-focused guides for painting your home in India."
+      }
+    },
+    "services": {
+      "meta": {
+        "title": "Our Services",
+        "description": "Explore the painting and related services PaintMyHome offers for your home."
       }
     },
     "contact": {

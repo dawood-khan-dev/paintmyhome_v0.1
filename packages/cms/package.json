@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "basehub dev",
-    "build": "if [ -n \"$BASEHUB_TOKEN\" ]; then basehub build; else echo 'Skipping basehub build (BASEHUB_TOKEN not set)'; fi",
+    "build": "basehub build || echo 'Skipping basehub build (BASEHUB_TOKEN not set)'",
     "analyze": "basehub",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
