@@ -39,6 +39,8 @@ export const generateMetadata = async ({
   });
 };
 
+export const dynamic = "force-static";
+
 export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
   const allServices = await services.getServices();
 
@@ -49,7 +51,7 @@ const ServicePage = async ({ params }: ServicePageProperties) => {
   const { slug } = await params;
 
   return (
-    <Feed queries={[services.serviceQuery(slug)]}>
+    <Feed draft={false} queries={[services.serviceQuery(slug)]}>
       {async ([data]) => {
         "use server";
 
