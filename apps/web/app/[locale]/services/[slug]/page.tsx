@@ -39,6 +39,8 @@ export const generateMetadata = async ({
   });
 };
 
+export const dynamic = "force-static";
+
 export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
   const allServices = await services.getServices();
 

@@ -4,6 +4,8 @@ import { Feed } from "@repo/cms/components/feed";
 import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
 
+export const dynamic = "force-static";
+
 export const generateMetadata = async (): Promise<Metadata> => {
   const aboutContent = await about.getAbout();
 

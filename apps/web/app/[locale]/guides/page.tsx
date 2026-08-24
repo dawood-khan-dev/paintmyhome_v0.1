@@ -9,6 +9,8 @@ import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 interface GuidesIndexProps {
   params: Promise<{
     locale: string;

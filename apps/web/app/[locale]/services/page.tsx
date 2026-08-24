@@ -9,6 +9,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICE_ICONS } from "./service-icons";
 
+export const dynamic = "force-static";
+
 interface ServicesIndexProps {
   params: Promise<{
     locale: string;
