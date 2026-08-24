@@ -44,7 +44,7 @@ const ServicesIndex = async ({ params }: ServicesIndexProps) => {
             </h1>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <Feed queries={[services.servicesQuery]}>
+            <Feed draft={false} queries={[services.servicesQuery]}>
               {async ([data]) => {
                 "use server";
 

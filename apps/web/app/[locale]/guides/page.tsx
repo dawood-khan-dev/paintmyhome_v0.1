@@ -44,7 +44,7 @@ const GuidesIndex = async ({ params }: GuidesIndexProps) => {
             </h4>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <Feed queries={[guides.guidesQuery]}>
+            <Feed draft={false} queries={[guides.guidesQuery]}>
               {async ([data]) => {
                 "use server";
 

@@ -16,7 +16,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const About = () => (
   <div className="w-full py-20 lg:py-40">
     <div className="container mx-auto">
-      <Feed queries={[about.aboutQuery]}>
+      <Feed draft={false} queries={[about.aboutQuery]}>
         {async ([data]) => {
           "use server";
 

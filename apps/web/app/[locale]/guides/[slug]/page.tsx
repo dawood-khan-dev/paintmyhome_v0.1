@@ -50,7 +50,7 @@ const GuidePage = async ({ params }: GuidePageProperties) => {
   const { slug } = await params;
 
   return (
-    <Feed queries={[guides.guideQuery(slug)]}>
+    <Feed draft={false} queries={[guides.guideQuery(slug)]}>
       {async ([data]) => {
         "use server";
 

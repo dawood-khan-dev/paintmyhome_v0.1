@@ -49,7 +49,7 @@ const ServicePage = async ({ params }: ServicePageProperties) => {
   const { slug } = await params;
 
   return (
-    <Feed queries={[services.serviceQuery(slug)]}>
+    <Feed draft={false} queries={[services.serviceQuery(slug)]}>
       {async ([data]) => {
         "use server";
 
