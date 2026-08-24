@@ -9,6 +9,8 @@ import { HowWeHelpGrid } from "./components/how-we-help";
 import { ServicesGrid } from "./components/services";
 import { WhyPaintMyHome } from "./components/why-paintmyhome";
 
+export const dynamic = "force-static";
+
 interface HomeProps {
   params: Promise<{
     locale: string;
