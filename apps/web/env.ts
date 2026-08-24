@@ -7,6 +7,7 @@ import { keys as observability } from "@repo/observability/keys";
 import { keys as rateLimit } from "@repo/rate-limit/keys";
 import { keys as security } from "@repo/security/keys";
 import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
   emptyStringAsUndefined: true,
@@ -21,7 +22,11 @@ export const env = createEnv({
     rateLimit(),
     googleSheets(),
   ],
-  server: {},
+  server: {
+    BASEHUB_WEBHOOK_SECRET: z.string().min(1).optional(),
+  },
   client: {},
-  runtimeEnv: {},
+  runtimeEnv: {
+    BASEHUB_WEBHOOK_SECRET: process.env.BASEHUB_WEBHOOK_SECRET,
+  },
 });
