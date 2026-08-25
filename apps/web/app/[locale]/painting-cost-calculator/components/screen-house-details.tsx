@@ -173,6 +173,9 @@ export const ScreenHouseDetails = ({
   return (
     <div className="flex flex-col gap-8">
       <FieldGroup title={copy.partOfHouse.title}>
+        <p className="text-muted-foreground text-sm">
+          {copy.partOfHouse.scopeNote}
+        </p>
         <RadioGroup
           className="grid grid-cols-2 gap-4"
           onValueChange={(value) =>
