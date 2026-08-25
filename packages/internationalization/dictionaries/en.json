@@ -21,6 +21,7 @@
         "city": "City",
         "cityPlaceholder": "Bangalore",
         "cta": "Request a Quote",
+        "submitting": "Submitting...",
         "success": "Thanks! We'll be in touch soon.",
         "error": "Something went wrong. Please try again."
       }
@@ -42,7 +43,8 @@
             "tooltip": "Painting exterior walls of the house using custom scaffolding arrangement as the situation demands."
           },
           "exteriorMessage": "Exterior painting costs varies significantly by the amount of scaffolding required, weather-grade paint and other factors. Request a quote to get exact cost.",
-          "getQuoteCta": "Get a Quote"
+          "getQuoteCta": "Get a Quote",
+          "scopeNote": "Instant estimates are currently available for interior painting only. Exterior painting requires a custom quote."
         },
         "houseSize": {
           "title": "House Size",
@@ -119,6 +121,9 @@
       "quoteModal": {
         "title": "Almost there...",
         "cta": "Reveal Estimate"
+      },
+      "progress": {
+        "stepLabel": "Step {current} of {total}"
       }
     },
     "home": {

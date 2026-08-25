@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@repo/design-system/components/ui/form";
 import { Input } from "@repo/design-system/components/ui/input";
+import { Spinner } from "@repo/design-system/components/ui/spinner";
 import type { Dictionary } from "@repo/internationalization";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -164,7 +165,13 @@ export const QuoteModal = ({
               disabled={form.formState.isSubmitting}
               type="submit"
             >
-              {cta ?? copy.cta}
+              {form.formState.isSubmitting ? (
+                <>
+                  <Spinner /> {copy.submitting}
+                </>
+              ) : (
+                (cta ?? copy.cta)
+              )}
             </Button>
           </form>
         </Form>
