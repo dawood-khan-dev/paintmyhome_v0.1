@@ -28,32 +28,30 @@ export const Calculator = ({ dictionary }: CalculatorProps) => {
   const payload = useMemo(() => buildQuotePayload(state), [state]);
 
   return (
-    <div className="w-full py-12 lg:py-20">
-      <div className="container mx-auto max-w-2xl">
-        {step === "details" && (
-          <ScreenHouseDetails
-            dictionary={dictionary}
-            onChange={updateState}
-            onNext={() => setStep("preference")}
-            onQuoteSuccess={() => setStep("estimate")}
-            payload={payload}
-            state={state}
-          />
-        )}
-        {step === "preference" && (
-          <ScreenPreference
-            dictionary={dictionary}
-            onChange={(tier: Tier) => updateState({ tier })}
-            onPrevious={() => setStep("details")}
-            onQuoteSuccess={() => setStep("estimate")}
-            payload={payload}
-            tier={state.tier}
-          />
-        )}
-        {step === "estimate" && (
-          <EstimateScreen dictionary={dictionary} payload={payload} />
-        )}
-      </div>
-    </div>
+    <>
+      {step === "details" && (
+        <ScreenHouseDetails
+          dictionary={dictionary}
+          onChange={updateState}
+          onNext={() => setStep("preference")}
+          onQuoteSuccess={() => setStep("estimate")}
+          payload={payload}
+          state={state}
+        />
+      )}
+      {step === "preference" && (
+        <ScreenPreference
+          dictionary={dictionary}
+          onChange={(tier: Tier) => updateState({ tier })}
+          onPrevious={() => setStep("details")}
+          onQuoteSuccess={() => setStep("estimate")}
+          payload={payload}
+          tier={state.tier}
+        />
+      )}
+      {step === "estimate" && (
+        <EstimateScreen dictionary={dictionary} payload={payload} />
+      )}
+    </>
   );
 };

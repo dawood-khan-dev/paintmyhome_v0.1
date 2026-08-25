@@ -113,7 +113,8 @@
         "tableCoatHeader": "Coat",
         "tableRateHeader": "Rate (₹/sq.ft.)",
         "tableSubtotalHeader": "Subtotal",
-        "tableTotalLabel": "Total"
+        "tableTotalLabel": "Total",
+        "confirmationMessage": "Thanks — we've received your details. Our team will follow up shortly to confirm your final quote."
       },
       "quoteModal": {
         "title": "Almost there...",

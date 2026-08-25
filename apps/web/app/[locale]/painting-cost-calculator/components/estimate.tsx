@@ -122,6 +122,12 @@ export const EstimateScreen = ({
           </TableRow>
         </TableFooter>
       </Table>
+
+      <div className="rounded-lg border bg-muted/40 p-4">
+        <p className="text-muted-foreground text-sm">
+          {copy.confirmationMessage}
+        </p>
+      </div>
     </div>
   );
 };
