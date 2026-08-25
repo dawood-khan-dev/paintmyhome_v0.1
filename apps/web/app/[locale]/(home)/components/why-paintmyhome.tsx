@@ -13,7 +13,7 @@ export const WhyPaintMyHome = ({ dictionary }: WhyPaintMyHomeProps) => {
   const copy = dictionary.web.home.whyPaintMyHome;
 
   return (
-    <div className="w-full pt-5 pb-20 lg:pt-10 lg:pb-40">
+    <div className="w-full pb-10 lg:pb-20">
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">

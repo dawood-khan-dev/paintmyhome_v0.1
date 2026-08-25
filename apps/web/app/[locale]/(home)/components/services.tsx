@@ -1,4 +1,5 @@
 import { services } from "@repo/cms";
+import { Image } from "@repo/cms/components/image";
 import type { Dictionary } from "@repo/internationalization";
 import Link from "next/link";
 import { SERVICE_ICONS, SERVICE_SLUGS } from "../../services/service-icons";
@@ -23,7 +24,7 @@ export const ServicesGrid = async ({ dictionary }: ServicesGridProps) => {
   }
 
   return (
-    <div className="w-full pt-5 pb-20 lg:pt-10 lg:pb-40">
+    <div className="w-full pb-10 lg:pb-20">
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
@@ -44,11 +45,18 @@ export const ServicesGrid = async ({ dictionary }: ServicesGridProps) => {
                   href={`/services/${service._slug}`}
                   key={service._slug}
                 >
+                  {service.coverImage ? (
+                    <Image
+                      alt={service.coverImage.alt ?? ""}
+                      className="aspect-video w-full rounded-md object-cover"
+                      height={service.coverImage.height}
+                      src={service.coverImage.url}
+                      width={service.coverImage.width}
+                    />
+                  ) : undefined}
                   <div className="flex items-center gap-3">
                     {Icon ? <Icon className="h-6 w-6 stroke-1" /> : undefined}
-                    <h3 className="text-xl tracking-tight">
-                      {service._title}
-                    </h3>
+                    <h3 className="text-xl tracking-tight">{service._title}</h3>
                   </div>
                   <p className="text-base text-muted-foreground">
                     {service.summary}

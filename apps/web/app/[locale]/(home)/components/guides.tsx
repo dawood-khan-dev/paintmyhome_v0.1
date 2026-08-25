@@ -1,4 +1,5 @@
 import { guides } from "@repo/cms";
+import { Image } from "@repo/cms/components/image";
 import type { Dictionary } from "@repo/internationalization";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ export const GuidesGrid = async ({ dictionary }: GuidesGridProps) => {
   }
 
   return (
-    <div className="w-full pt-5 pb-20 lg:pt-10 lg:pb-40">
+    <div className="w-full pb-10 lg:pb-20">
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
@@ -33,6 +34,15 @@ export const GuidesGrid = async ({ dictionary }: GuidesGridProps) => {
                 href={`/guides/${guide._slug}`}
                 key={guide._slug}
               >
+                {guide.coverImage ? (
+                  <Image
+                    alt={guide.coverImage.alt ?? ""}
+                    className="aspect-video w-full rounded-md object-cover"
+                    height={guide.coverImage.height}
+                    src={guide.coverImage.url}
+                    width={guide.coverImage.width}
+                  />
+                ) : undefined}
                 <h3 className="text-xl tracking-tight">{guide._title}</h3>
                 <p className="text-base text-muted-foreground">
                   {guide.summary}

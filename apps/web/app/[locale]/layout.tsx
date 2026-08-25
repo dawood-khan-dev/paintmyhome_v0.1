@@ -32,7 +32,7 @@ const RootLayout = async ({ children, params }: RootLayoutProperties) => {
           <DesignSystemProvider defaultTheme="light">
             <Header dictionary={dictionary} />
             {children}
-            <Footer />
+            <Footer dictionary={dictionary} />
           </DesignSystemProvider>
           <Toolbar />
           {process.env.BASEHUB_TOKEN && <CMSToolbar />}
